@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Chat Bot</title>
+
+<link rel="stylesheet" href="styles.css">
+
+       </head>
+<body>
+    <h2>Farmer Chat Bot</h2>
+    <div class="chat-container" id="chatOutput"></div>
+    <div class="input-container">
+        <input type="text" id="userInput" placeholder="Type your message here..." />
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        const responses = {
+            crops: "You can plant crops like wheat, rice, maize, and soybeans. Make sure to choose the right crop for your soil and climate.",
+            weather: "The current weather is sunny with a slight chance of rain in the evening. Perfect weather for planting!",
+            farm_management: "Make sure to regularly check your soil moisture and nutrient levels. Rotate crops and use organic fertilizers to maintain soil health.",
+            what_is_crop_yield: "Crop yield is the amount of a crop produced per unit of land. It can also refer to the amount of other products, like milk, meat, or wool, produced per unit of land.",
+            remedies: "AI-powered technologies enable precise and sustainable weed control, reducing herbicide usage and minimizing environmental impact.",
+hi:"Hi",
+which: "Many crops grow well in red soil, including cotton, wheat, rice, pulses, millets, tobacco, oil seeds, potatoes, and fruits",
+whichc:"Black soil, also known as regur soil or black cotton soil, is suitable for growing many crops, including cotton, sugarcane, tobacco, and citrus fruits",
+Whic:"The correct answer is Groundnut. The soil type suitable for the growth of groundnut is sandy loam and loamy soil. Groundnut is a leguminous crop" 
+ };
+
+        function getResponse(userInput) {
+            userInput = userInput.toLowerCase();
+            if (userInput.includes('crops')) {
+                return responses.crops;
+            } else if (userInput.includes('weather')) {
+                return responses.weather;
+            } else if (userInput.includes('farm management')) {
+                return responses.farm_management;
+            } else if (userInput.includes('crop yield')) {
+                return responses.what_is_crop_yield;
+            } else if (userInput.includes('weed remedies')) {
+                return responses.remedies;
+}else if (userInput.includes('hi')) {
+        return responses.hi;
+}else if (userInput.includes('red soil crops')) {
+        return responses.which;
+}else if (userInput.includes('black soil crops')) {
+        return responses.whichc;
+}else if (userInput.includes('crop not for black soil?')) {
+        return responses.Whic;
+
+} else {
+                return "I'm sorry, I didn't understand that. Could you please ask about crops, weather, or farm management?";
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('userInput').value;
+            const response = getResponse(input);
+            const chatOutput = document.getElementById('chatOutput');
+            const userMessage = document.createElement('p');
+            userMessage.textContent = 'You: ' + input;
+            chatOutput.appendChild(userMessage);
+            const botMessage = document.createElement('p');
+            botMessage.textContent = 'Bot: ' + response;
+            chatOutput.appendChild(botMessage);
+            document.getElementById('userInput').value = '';
+            chatOutput.scrollTop = chatOutput.scrollHeight;
+        }
+    </script>
+</body>
+</html>
